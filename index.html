@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mulah Rewards</title>
+  <!-- <link rel="stylesheet" href="./style.css"> -->
+
+  <style>
+    :root {
+      --mulah-orange: #F47B20;
+      --text-gray: #666666;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 640px;
+      height: 1136px;
+      max-width: 100%;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #ffffff;
+      /* Add justify-content to help with vertical spacing */
+      justify-content: space-between;
+    }
+
+    .logo {
+      margin-top: 10%;
+      /* Adjust this value to move content down */
+    }
+
+    .logo h1 {
+      color: var(--mulah-orange);
+      font-size: 4rem;
+      font-weight: 700;
+      font-family: 'Futura', 'Gotham', 'Proxima Nova', sans-serif;
+      letter-spacing: 2px;
+      margin: 4rem 0;
+    }
+
+    .welcome-text {
+      text-align: left;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 1.5rem;
+    }
+
+    .welcome-text h2 {
+      color: var(--text-gray);
+      font-size: 70px;
+      font-weight: bold;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: normal;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      color: var(--mulah-orange);
+      margin: 2rem 0;
+      font-size: 20px;
+      font-weight: bold;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .phone-input {
+      margin-top: auto;
+      /* This will push the form section down */
+      margin-bottom: 1.5rem;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+    }
+
+    .prefix {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-gray);
+      padding-left: 0.5rem;
+      font-size: 1rem;
+    }
+
+    input[type="tel"] {
+      width: 100%;
+      padding: 0.75rem 0.75rem 0.75rem 3rem;
+      border: none;
+      border-bottom: 1px solid #ddd;
+      outline: none;
+      font-size: 1rem;
+      color: var(--text-gray);
+    }
+
+    input[type="tel"]::placeholder {
+      color: #999;
+    }
+
+    button#checkPoints {
+      background-color: var(--mulah-orange);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      width: 100%;
+      max-width: 400px;
+      padding: 1rem;
+      font-size: 1.3rem;
+
+      cursor: pointer;
+      margin-top: 2rem;
+      transition: background-color 0.2s;
+    }
+
+    button#checkPoints:hover {
+      background-color: #e06b10;
+    }
+
+    footer {
+      margin-top: auto;
+      padding-bottom: 10%;
+      /* Increase bottom padding */
+      padding: 2rem 0;
+      color: var(--text-gray);
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    footer a {
+      color: var(--mulah-orange);
+      text-decoration: none;
+    }
+
+    /* Registration Page Styles */
+    .registration-title {
+      color: var(--text-gray);
+      font-size: 2.4rem;
+      font-family: 'Times New Roman', Times, serif;
+      margin-bottom: 1rem;
+    }
+
+    .registration-form {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-group label {
+      font-family: 'Times New Roman', Times, serif;
+      display: block;
+      font-size: 20px;
+      color: var(--text-gray);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    .birthday-inputs {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .birthday-inputs input {
+      width: 33.33%;
+    }
+
+    .error-message {
+      display: none;
+      color: red;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+
+    .checkbox-group {
+      margin-top: 1rem;
+    }
+
+    .checkbox-group label {
+      display: inline;
+      margin-left: 0.5rem;
+    }
+
+    /* Show error messages when inputs are invalid */
+    input:invalid+.error-message {
+      display: block;
+    }
+
+    /* Summary Page Styles */
+    .summary-title {
+      color: var(--text-gray);
+      font-size: 2.5rem;
+      font-weight: normal;
+      margin-bottom: 0.5rem;
+    }
+
+    .summary-container {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 2rem;
+      margin-bottom: auto;
+    }
+
+    .summary-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .summary-item label {
+      display: block;
+      color: var(--mulah-orange);
+      font-size: 1rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .summary-item p {
+      color: var(--text-gray);
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .back-button {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      padding: 0.5rem 1rem;
+      background: none;
+      border: 2px solid var(--mulah-orange);
+      color: var(--mulah-orange);
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: var(--mulah-orange);
+      color: white;
+    }
+
+    /* Add media query for mobile responsiveness */
+    @media (max-width: 640px) {
+      .container {
+        height: 100vh;
+      }
+
+      .logo {
+        margin-top: 15%;
+      }
+
+      footer {
+        padding-bottom: 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section id="page1" class="container">
+    <div class="logo">
+      <h1>MULAH</h1>
+    </div>
+    <div class="welcome-text">
+      <h2>Hello,</h2>
+      <h2>Welcome !</h2>
+    </div>
+    <p class="subtitle">Check Your Loyalty Points & Rewards</p>
+
+    <div class="phone-input">
+      <span class="prefix">+60</span>
+      <input type="tel" id="phoneNumber" placeholder="Enter your mobile number">
+    </div>
+
+    <button id="checkPoints">Check Loyalty Points</button>
+
+    <footer>
+      <p>Powered by <a href="https://MulahRewards.com">MulahRewards.com</a></p>
+    </footer>
+  </section>
+
+
+  <section id="page2" class="container" style="display: none;">
+    <div class="logo">
+      <h1>MULAH</h1>
+    </div>
+    <button id="backToPage1" class="back-button">Back</button>
+    <h2 class="registration-title">Registration</h2>
+    <p class="subtitle">Please fill up your details.</p>
+
+    <form id="registrationForm" class="registration-form">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" required>
+        <span class="error-message">*Please insert a name.</span>
+      </div>
+
+      <div class="form-group">
+        <label for="birthday">Birthday</label>
+        <div class="birthday-inputs">
+          <input type="text" id="day" placeholder="DD" maxlength="2" required>
+          <input type="text" id="month" placeholder="MM" maxlength="2" required>
+          <input type="text" id="year" placeholder="YYYY" maxlength="4" required>
+        </div>
+        <span class="error-message">*Please insert your birthday</span>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+        <span class="error-message">*Please insert a valid email address.</span>
+        <div class="checkbox-group">
+          <input type="checkbox" id="noEmail">
+          <label for="noEmail">No email address</label>
+        </div>
+      </div>
+
+      <button type="submit" id="checkPoints">Continue</button>
+    </form>
+
+    <footer>
+      <p>Powered by <a href="https://MulahRewards.com">MulahRewards.com</a></p>
+    </footer>
+  </section>
+
+
+  <section id="page3" class="container" style="display: none;">
+    <div class="logo">
+      <h1>MULAH</h1>
+    </div>
+    <button id="backToPage1From3" class="back-button">Back</button>
+    <h2 class="summary-title">Summary</h2>
+    <p class="subtitle">Here are your details</p>
+
+    <div class="summary-container">
+      <div class="summary-item">
+        <label>Phone Number</label>
+        <p id="summaryPhone">+60 </p>
+      </div>
+      <div class="summary-item">
+        <label>Name</label>
+        <p id="summaryName"></p>
+      </div>
+      <div class="summary-item">
+        <label>Birthday</label>
+        <p id="summaryBirthday"></p>
+      </div>
+      <div class="summary-item">
+        <label>Email</label>
+        <p id="summaryEmail"></p>
+      </div>
+    </div>
+
+    <footer>
+      <p>Powered by <a href="https://MulahRewards.com">MulahRewards.com</a></p>
+    </footer>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      const page1 = document.getElementById('page1');
+      const page2 = document.getElementById('page2');
+      const page3 = document.getElementById('page3');
+      const phoneInput = document.getElementById('phoneNumber');
+      const checkButton = document.getElementById('checkPoints');
+      const registrationForm = document.getElementById('registrationForm');
+
+
+      phoneInput.addEventListener('input', (e) => {
+
+        e.target.value = e.target.value.replace(/[^0-9]/g, '');
+
+
+        if (e.target.value.length > 10) {
+          e.target.value = e.target.value.slice(0, 10);
+        }
+      });
+
+
+      checkButton.addEventListener('click', () => {
+
+        const cleanNumber = phoneInput.value.replace(/[^0-9]/g, '');
+
+
+
+        const isValidMalaysianMobile = /^1[0-9]{8,9}$/.test(cleanNumber);
+
+        if (isValidMalaysianMobile) {
+          page1.style.display = 'none';
+          page2.style.display = 'flex';
+        } else {
+          alert('Please enter a valid Malaysian mobile number\nFormat: +60 1XX XXX XXXX');
+        }
+      });
+
+
+      const dayInput = document.getElementById('day');
+      const monthInput = document.getElementById('month');
+      const yearInput = document.getElementById('year');
+
+      [dayInput, monthInput, yearInput].forEach(input => {
+        input.addEventListener('input', (e) => {
+          e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        });
+      });
+
+
+      const emailInput = document.getElementById('email');
+      const noEmailCheckbox = document.getElementById('noEmail');
+
+      noEmailCheckbox.addEventListener('change', (e) => {
+        emailInput.disabled = e.target.checked;
+        if (e.target.checked) {
+          emailInput.value = '';
+        }
+      });
+
+
+      registrationForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+
+        if (!validateForm()) return;
+
+        const formData = {
+          phone: phoneInput.value,
+          name: document.getElementById('name').value,
+          birthday: `${dayInput.value}/${monthInput.value}/${yearInput.value}`,
+          email: noEmailCheckbox.checked ? 'No email provided' : emailInput.value
+        };
+
+
+        document.getElementById('summaryPhone').textContent = '+60 ';
+
+
+        document.getElementById('summaryPhone').textContent += formData.phone;
+        document.getElementById('summaryName').textContent = formData.name;
+        document.getElementById('summaryBirthday').textContent = formData.birthday;
+        document.getElementById('summaryEmail').textContent = formData.email;
+
+
+        localStorage.setItem('userData', JSON.stringify(formData));
+
+
+        page2.style.display = 'none';
+        page3.style.display = 'flex';
+      });
+
+
+      document.getElementById('backToPage1').addEventListener('click', () => {
+        page2.style.display = 'none';
+        page1.style.display = 'flex';
+      });
+
+
+      document.getElementById('backToPage1From3').addEventListener('click', () => {
+        page3.style.display = 'none';
+        page1.style.display = 'flex';
+      });
+
+
+      function validateForm() {
+        const name = document.getElementById('name').value;
+        const day = parseInt(dayInput.value);
+        const month = parseInt(monthInput.value);
+        const year = parseInt(yearInput.value);
+        const email = emailInput.value;
+
+        if (!name) {
+          alert('Please enter your name');
+          return false;
+        }
+
+        if (!noEmailCheckbox.checked && !email) {
+          alert('Please enter your email or check "No email address"');
+          return false;
+        }
+
+        if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1900 || year > new Date().getFullYear()) {
+          alert('Please enter a valid date');
+          return false;
+        }
+
+        return true;
+      }
+    });
+  </script>
+</body>
+
+</html>
